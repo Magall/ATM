@@ -25,13 +25,13 @@ describe('Interation 2 - bills deduction', () => {
     it('withdraws should deduct bills and coins', () => {
         const atm = new ATM()
         const result = atm.withdraw(1725)
-        const billsAndCoins = atm.getBillAndCoins()
+        const billsAndCoins = atm.getBillsAndCoins()
 
         expect(result).toBe('2 bills of 500. 3 bills of 200. 1 bill of 100. 1 bill of 20. 1 bill of 5. ')
         expect(billsAndCoins).toMatchObject([0, 0, 4, 12, 19, 50, 99, 250, 500])
 
         const secondReceipt = atm.withdraw(1825)
-        const secondBillsAndCoins = atm.getBillAndCoins()
+        const secondBillsAndCoins = atm.getBillsAndCoins()
 
         expect(secondReceipt).toBe('4 bills of 100. 12 bills of 50. 19 bills of 20. 44 bills of 10. 1 bill of 5. ')
         expect(secondBillsAndCoins).toMatchObject([0, 0, 0, 0, 0, 6, 98, 250, 500])

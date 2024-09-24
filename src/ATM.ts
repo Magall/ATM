@@ -68,7 +68,7 @@ export class ATM {
         return cash
     }
 
-    public getBillAndCoins(): string[] {
+    public getBillsAndCoins(): string[] {
         return Array.from(this.bank.values())
     }
 
