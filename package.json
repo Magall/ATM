@@ -5,7 +5,8 @@
   "main": "src/kata.ts",
   "scripts": {
     "build": "npx tsc",
-    "test": "npx jest"
+    "test": "npx jest",
+    "test:coverage": "npx jest --coverage"
   },
   "author": "",
   "license": "ISC",
