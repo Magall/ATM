@@ -21,7 +21,7 @@ describe('Iteration 1 - withdraw', () => {
     })
 })
 
-describe('Interation 2 - bills deduction', () => {
+describe('Interation 2 - money deduction', () => {
     it('withdraws should deduct bills and coins', () => {
         const atm = new ATM()
         const result = atm.withdraw(1725)
