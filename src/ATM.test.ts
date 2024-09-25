@@ -24,10 +24,10 @@ describe('Iteration 1 - withdraw', () => {
 describe('Interation 2 - money deduction', () => {
     it('withdraws should deduct bills and coins', () => {
         const atm = new ATM()
-        const result = atm.withdraw(1725)
+        const receipt = atm.withdraw(1725)
         const billsAndCoins = atm.getBillsAndCoins()
 
-        expect(result).toBe('2 bills of 500. 3 bills of 200. 1 bill of 100. 1 bill of 20. 1 bill of 5. ')
+        expect(receipt).toBe('2 bills of 500. 3 bills of 200. 1 bill of 100. 1 bill of 20. 1 bill of 5. ')
         expect(billsAndCoins).toMatchObject([0, 0, 4, 12, 19, 50, 99, 250, 500])
 
         const secondReceipt = atm.withdraw(1825)

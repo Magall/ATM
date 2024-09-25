@@ -27,12 +27,16 @@ export class ATM {
         this.bank.set(1, 500)
     }
 
+    public getBillsAndCoins(): string[] {
+        return Array.from(this.bank.values())
+    }
+
     public withdraw(quantity: number): string {
         return this.getReceipt(quantity)
     }
 
     private getReceipt(quantity: number): string {
-        const cash = this.calculateCash(quantity)
+        const cash = this.determineNotesToDispense(quantity)
         if (cash.length === 0) {
             return 'The ATM machine has not enough money, please go to the nearest atm machine'
         }
@@ -48,28 +52,21 @@ export class ATM {
         return receipt
     }
 
-    private calculateCash(quantity: number): Money[] {
+    private determineNotesToDispense(quantity: number): Money[] {
         let quantityToWitdraw = quantity
         const cash: any = []
         let i = 0
-        while (quantityToWitdraw > 0) {
-            while (i < MONEY.length) {
-                if (this.bank.get(1) === 0) return []
-                if (quantityToWitdraw >= MONEY[i].value && this.bank.get(MONEY[i].value) > 0) {
-                    quantityToWitdraw -= MONEY[i].value
-                    cash.push({ ...MONEY[i] })
-                    this.bank.set(MONEY[i].value, this.bank.get(MONEY[i].value) - 1)
-                }
-                else {
-                    i++
-                }
+        while (quantityToWitdraw > 0 && i < MONEY.length) {
+            if (this.bank.get(1) === 0) return []
+            if (quantityToWitdraw >= MONEY[i].value && this.bank.get(MONEY[i].value) > 0) {
+                quantityToWitdraw -= MONEY[i].value
+                cash.push({ ...MONEY[i] })
+                this.bank.set(MONEY[i].value, this.bank.get(MONEY[i].value) - 1)
+            }
+            else {
+                i++
             }
         }
         return cash
     }
-
-    public getBillsAndCoins(): string[] {
-        return Array.from(this.bank.values())
-    }
-
 }
